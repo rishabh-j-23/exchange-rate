@@ -3,8 +3,8 @@ import json
 
 rate = ExchangeRate()
 
-run_menu = True
-while run_menu:
+run_menu = 1
+while run_menu == 1:
     print("1. Convert Currency")
     print("2. Curreny Fluctuations")
     print("3. Latest Currency Rate")
@@ -50,4 +50,4 @@ while run_menu:
         end_date = input("End Date (yyyy-mm-dd) : ")
         rate.get_data_between_dates(start_date, end_date, symbol)
 
-    run_menu = bool(input("Go back to menu? (True/False) : "))
+    run_menu = int(input("Go back to menu? (1/0) : "))
