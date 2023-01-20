@@ -10,7 +10,7 @@ class ExchangeRate:
 
 
     def convert(self, fromCurr: str, toCurr: str, amount):
-        url = f"{self.api}/convert?to={toCurr}&from={fromCurr}&amount={amount}"
+        url = f"{self.api}/convert?to={toCurr}&from={fromCurr}&amount={amount}&base=USD"
         payload = {}
         response = requests.request("GET", url, headers=self.headers, data=payload).json()
         rate = response['result']
@@ -20,7 +20,7 @@ class ExchangeRate:
         """
         put dates in yyyy-mm-dd format
         """
-        url = f"{self.api}/fluctuation?start_date={start_date}&end_date={end_date}&symbols={curr}"
+        url = f"{self.api}/fluctuation?start_date={start_date}&end_date={end_date}&symbols={curr}&base=USD"
         payload = {}
         response = requests.request("GET", url, headers=self.headers, data = payload).json()
         base = response['rates']['INR']
@@ -28,7 +28,7 @@ class ExchangeRate:
         return base['start_rate'], base['end_rate'], base['change'], base['change_pct']
 
     def latest_rate(self, symbols: str):
-        url = f"{self.api}/latest?symbols={symbols}"
+        url = f"{self.api}/latest?symbols={symbols}&base=USD"
         payload = {}
         response = requests.request("GET", url, headers=self.headers, data = payload).json()
         latest = response["rates"]
